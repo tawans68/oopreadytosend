@@ -28,7 +28,7 @@ public class BrowseNoteActivity extends AppCompatActivity {
 
     // Search UI Components (Requirement 3)
     EditText searchEditText;
-    Button searchBtn;
+    Button searchBtn, backBtn;
     ProgressBar searchProgressBar;
     TextView searchResultTextView;
 
@@ -49,8 +49,12 @@ public class BrowseNoteActivity extends AppCompatActivity {
         // Bind Search UI (Requirement 3)
         searchEditText = findViewById(R.id.searchEditText);
         searchBtn = findViewById(R.id.searchBtn);
+        backBtn = findViewById(R.id.backBtn);
         searchProgressBar = findViewById(R.id.searchProgressBar);
         searchResultTextView = findViewById(R.id.searchResultTextView);
+
+        // Back Button
+        backBtn.setOnClickListener(v -> finish());
 
         // Search Button Event (Requirement 3)
         searchBtn.setOnClickListener(v -> {

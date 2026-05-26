@@ -23,6 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:hint="Note Title"
+        android:inputType="text"
         app:layout_constraintTop_toBottomOf="@id/titleHeader" />
 
     <RadioGroup
@@ -53,6 +54,7 @@
         android:hint="Content or Items (comma separated)"
         android:gravity="top"
         android:minLines="3"
+        android:inputType="textMultiLine"
         app:layout_constraintTop_toBottomOf="@id/typeGroup" />
 
     <TextView
@@ -64,11 +66,27 @@
         app:layout_constraintTop_toBottomOf="@id/editContent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <Spinner
-        android:id="@+id/userSpinner"
+    <LinearLayout
+        android:id="@+id/userLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/userHeader" />
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        app:layout_constraintTop_toBottomOf="@id/userHeader">
+
+        <Spinner
+            android:id="@+id/userSpinner"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/addNewUserBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="+"
+            android:minWidth="48dp" />
+    </LinearLayout>
 
     <Button
         android:id="@+id/saveButton"
@@ -76,6 +94,15 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:text="Save Note"
-        app:layout_constraintTop_toBottomOf="@id/userSpinner" />
+        app:layout_constraintTop_toBottomOf="@id/userLayout" />
+
+    <Button
+        android:id="@+id/backBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Back to Main"
+        android:backgroundTint="#9E9E9E"
+        app:layout_constraintTop_toBottomOf="@id/saveButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

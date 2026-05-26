@@ -17,7 +17,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
-    Button addBtn, browseBtn, fetchApiBtn;
+    Button addBtn, browseBtn, fetchApiBtn, exitBtn;
     ProgressBar loadData;
 
     @Override
@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
         addBtn = findViewById(R.id.addBtn);
         browseBtn = findViewById(R.id.browseBtn);
         fetchApiBtn = findViewById(R.id.fetchApiBtn);
+        exitBtn = findViewById(R.id.exitBtn);
         loadData = findViewById(R.id.progressBar);
 
         loadData.setVisibility(View.GONE);
@@ -39,6 +40,9 @@ public class MainActivity extends AppCompatActivity {
                 fetchNotesFromApi();
             }
         });
+
+        // Exit Event: ปิดแอป
+        exitBtn.setOnClickListener(v -> finish());
 
         // Event-driven: ไปหน้า AddNoteActivity
         addBtn.setOnClickListener(new View.OnClickListener() {
