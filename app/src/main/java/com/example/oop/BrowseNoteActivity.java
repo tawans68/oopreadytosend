@@ -1,6 +1,10 @@
 package com.example.oop;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -22,6 +26,12 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class BrowseNoteActivity extends AppCompatActivity {
     TextView showNote, showNoteFromAPI;
 
+    // Search UI Components (Requirement 3)
+    EditText searchEditText;
+    Button searchBtn;
+    ProgressBar searchProgressBar;
+    TextView searchResultTextView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +45,17 @@ public class BrowseNoteActivity extends AppCompatActivity {
 
         showNote = findViewById(R.id.textView3);
         showNoteFromAPI = findViewById(R.id.textView5);
+
+        // Bind Search UI (Requirement 3)
+        searchEditText = findViewById(R.id.searchEditText);
+        searchBtn = findViewById(R.id.searchBtn);
+        searchProgressBar = findViewById(R.id.searchProgressBar);
+        searchResultTextView = findViewById(R.id.searchResultTextView);
+
+        // Search Button Event (Requirement 3)
+        searchBtn.setOnClickListener(v -> {
+            performSearch();
+        });
 
         // load data from db
         Executors.newSingleThreadExecutor().execute(() -> {
@@ -89,5 +110,27 @@ public class BrowseNoteActivity extends AppCompatActivity {
                 showNoteFromAPI.setText("Failed: " + t.getMessage());
             }
         });
+    }
+
+    // Perform Search Logic (Requirement 3)
+    private void performSearch() {
+        searchResultTextView.setText(""); // ล้างข้อความเก่า
+        searchProgressBar.setVisibility(View.VISIBLE); // แสดง ProgressBar
+
+        // ใช้ Thread ในการโหลดข้อมูล (สมมติ)
+        new Thread(() -> {
+            try {
+                // ดีเลย์ 2 วินาที
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            // กลับมาทำงานบน UI Thread
+            runOnUiThread(() -> {
+                searchProgressBar.setVisibility(View.GONE); // ซ่อน ProgressBar
+                searchResultTextView.setText("ไม่พบข้อมูล"); // แสดงข้อความ "ไม่พบข้อมูล"
+            });
+        }).start();
     }
 }

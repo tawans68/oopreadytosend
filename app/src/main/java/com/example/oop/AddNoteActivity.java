@@ -45,7 +45,7 @@ public class AddNoteActivity extends AppCompatActivity {
 
     private void setupUserSpinner() {
         userList = new ArrayList<>();
-        userList.add(new StudentUser("Tawan Seankham", "tawan.s68@psru.ac.th", "6815247006"));
+        userList.add(new StudentUser("tawan seankham", "tawan.s68@psru.ac.th", "6815247006"));
         userList.add(new StaffUser("Wanarat", "wanarat@email.com", "Computer Science"));
 
         List<String> userNames = new ArrayList<>();
